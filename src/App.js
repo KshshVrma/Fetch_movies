@@ -6,10 +6,10 @@ import './App.css';
 function App() {
 
   const [movies,setMovies]=useState([]);
-function fetchMovieHandler(){
-  fetch('https://swapi.py4e.com/api/films').then(response=>{
-return response.json();
-  }).then(data=>{
+async function fetchMovieHandler(){
+   const response= await fetch('https://swapi.py4e.com/api/films');
+   const data=await response.json();
+
     const transformedMovies=data.results.map(movieData=>{
       return {
         id:movieData.episode_id,
@@ -19,8 +19,8 @@ return response.json();
       }
     })
     setMovies(transformedMovies);
-  });
-}
+  };
+
 
   return (
     <React.Fragment>
